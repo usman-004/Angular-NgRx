@@ -1,1 +1,5 @@
-export const initialState = { counter: 0 };
+import { counterInterface } from 'src/app/interface/counter.interface';
+
+export const initialState: counterInterface = {
+  counter: 0,
+};
