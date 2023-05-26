@@ -9,22 +9,16 @@ import { counterInterface } from 'src/app/interface/counter.interface';
   styleUrls: ['./counter-button.component.css'],
 })
 export class CounterButtonComponent implements OnInit {
-  // @Output() increment=new EventEmitter<number>();
-  // @Output() decrement=new EventEmitter<number>();
-  // @Output() reset=new EventEmitter<number>();
   constructor(private store: Store<{ counter: counterInterface }>) {}
 
   ngOnInit(): void {}
   onIncrement() {
-    // this.increment.emit();
     this.store.dispatch(increment());
   }
   onDecrement() {
-    // this.decrement.emit();
     this.store.dispatch(decrement());
   }
   onReset() {
-    // this.reset.emit();
     this.store.dispatch(reset());
   }
 }

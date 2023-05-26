@@ -15,3 +15,6 @@ export const customIncrement = createAction(
   'customIncrement',
   props<counterInterface>()
 );
+
+//action for userName
+export const userName = createAction('userName');

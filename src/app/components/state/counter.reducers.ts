@@ -5,6 +5,7 @@ import {
   decrement,
   increment,
   reset,
+  userName,
 } from './counter.actions';
 
 const _counterReducer = createReducer(
@@ -33,6 +34,12 @@ const _counterReducer = createReducer(
       ...state,
       // counter: state.counter + action.value,
       counter: state.counter + action.counter,
+    };
+  }),
+  on(userName, (state) => {
+    return {
+      ...state,
+      userName: 'M Usman',
     };
   })
 );
