@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { counterInterface } from 'src/app/interface/counter.interface';
-import { customIncrement, userName } from '../state/counter.actions';
+
+import { customIncrement, userName } from '../state/state.actions';
+import { StateInterface } from 'src/app/interface/state.interface';
 
 @Component({
   selector: 'app-custom-increment',
@@ -10,10 +11,10 @@ import { customIncrement, userName } from '../state/counter.actions';
 })
 export class CustomIncrementComponent implements OnInit {
   value!: number;
-  constructor(private store: Store<{ counter: counterInterface }>) {}
+  constructor(private store: Store<{ state: StateInterface }>) {}
   ngOnInit(): void {}
   onCustomIncrement() {
     // this.store.dispatch(customIncrement({ value: +this.value }));
-    // this.store.dispatch(customIncrement({ counter: +this.value }));
+    this.store.dispatch(customIncrement({ countValue: +this.value }));
   }
 }

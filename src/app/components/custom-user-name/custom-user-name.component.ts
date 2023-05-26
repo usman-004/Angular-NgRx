@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { counterInterface } from 'src/app/interface/counter.interface';
-import { userName } from '../state/counter.actions';
+
+import { userName } from '../state/state.actions';
+import { StateInterface } from 'src/app/interface/state.interface';
+import { userNameSelector } from '../state/state.selectors';
 
 @Component({
   selector: 'app-custom-user-name',
@@ -11,14 +13,13 @@ import { userName } from '../state/counter.actions';
 export class CustomUserNameComponent implements OnInit {
   //add name property
   userName!: string;
-  constructor(private store: Store<{ counter: counterInterface }>) {}
+  constructor(private store: Store<{ state: StateInterface }>) {}
 
   ngOnInit(): void {
     //subscribe userName property here
-    this.store.select('counter').subscribe((res) => {
+    this.store.select(userNameSelector).subscribe((res) => {
       console.log('Username Update...');
-
-      this.userName = res.userName;
+      this.userName = res;
     });
   }
   onUpdateUserName() {

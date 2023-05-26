@@ -7,7 +7,7 @@ import { CounterComponent } from './components/counter/counter.component';
 import { CounterButtonComponent } from './components/counter-button/counter-button.component';
 import { CounterOutputComponent } from './components/counter-output/counter-output.component';
 import { StoreModule } from '@ngrx/store';
-import { counterReducer } from './components/state/counter.reducers';
+import { counterReducer } from './components/state/state.reducers';
 import { CustomIncrementComponent } from './components/custom-increment/custom-increment.component';
 import { FormsModule } from '@angular/forms';
 import { CustomUserNameComponent } from './components/custom-user-name/custom-user-name.component';
@@ -25,7 +25,7 @@ import { CustomUserNameComponent } from './components/custom-user-name/custom-us
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    StoreModule.forRoot({ counter: counterReducer }),
+    StoreModule.forRoot({ state: counterReducer }),
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,7 +1,8 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable, Subscription } from 'rxjs';
-import { counterInterface } from 'src/app/interface/counter.interface';
+import { StateInterface } from 'src/app/interface/state.interface';
+import { counterSelector } from '../state/state.selectors';
 
 @Component({
   selector: 'app-counter-output',
@@ -11,19 +12,21 @@ import { counterInterface } from 'src/app/interface/counter.interface';
 export class CounterOutputComponent implements OnInit, OnDestroy {
   counter!: number;
   //make a observable
-  counter$!: Observable<counterInterface>;
+  counter$!: Observable<StateInterface>;
   //handle subscription
   counterSubscription!: Subscription;
-  constructor(private store: Store<{ counter: counterInterface }>) {}
+  constructor(private store: Store<{ state: StateInterface }>) {}
 
   ngOnInit(): void {
-    this.counterSubscription = this.store.select('counter').subscribe((res) => {
-      console.log('counter update...');
-      this.counter = res.counter;
-    });
+    this.counterSubscription = this.store
+      .select(counterSelector)
+      .subscribe((res) => {
+        console.log('counter update...');
+        this.counter = res;
+      });
 
     //in case dont want to use subscription
-    // this.counter$ = this.store.select('counter');
+    // this.counter$ = this.store.select('state');
   }
   ngOnDestroy(): void {
     if (this.counterSubscription) {

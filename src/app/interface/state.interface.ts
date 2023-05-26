@@ -1,4 +1,4 @@
-export interface counterInterface {
+export interface StateInterface {
   counter: number;
   userName: string;
 }
