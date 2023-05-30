@@ -8,7 +8,7 @@ const routes: Routes = [
       import('./modules/counter/counter.module').then((m) => m.CounterModule),
   },
   {
-    path: 'post',
+    path: 'posts',
     loadChildren: () =>
       import('./modules/post/post.module').then((m) => m.PostModule),
   },

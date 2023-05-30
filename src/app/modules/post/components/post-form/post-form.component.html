@@ -1,0 +1,40 @@
+<div class="row">
+  <div class="col-md-12">
+    <form>
+      <h3>Update Post</h3>
+      <hr />
+
+      <form [formGroup]="updateForm">
+        <div class="mb-3">
+          <label>Title</label>
+          <input type="text" class="form-control" formControlName="title" />
+        </div>
+        <div class="mb-3">
+          <label>Description</label>
+          <textarea
+            class="form-control"
+            formControlName="description"
+          ></textarea>
+        </div>
+
+        <div class="my-3">
+          <button
+            type="button"
+            class="btn btn-sm btn-success"
+            (click)="onUpdatePost()"
+          >
+            Update Post</button
+          >&nbsp;
+          <button
+            type="button"
+            class="btn btn-sm btn-warning"
+            [routerLink]="['/posts']"
+            (click)="onUpdatePost()"
+          >
+            Cancel
+          </button>
+        </div>
+      </form>
+    </form>
+  </div>
+</div>
