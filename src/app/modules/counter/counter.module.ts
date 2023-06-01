@@ -9,7 +9,7 @@ import { CustomUserNameComponent } from './components/custom-user-name/custom-us
 import { StoreModule } from '@ngrx/store';
 import { counterReducer } from './state/counter.reducers';
 import { FormsModule } from '@angular/forms';
-import { environment } from 'src/environments/environment';
+import { environment } from '../../../environments/environment';
 
 @NgModule({
   declarations: [
