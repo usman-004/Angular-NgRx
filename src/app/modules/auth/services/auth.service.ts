@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { AuthResponseData } from '../models/authResponseData.model';
+import { User } from '../models/authUser.model';
 
 @Injectable({
   providedIn: 'root',
@@ -44,7 +46,32 @@ export class AuthService {
     //   }
     // );
   }
+  formatUserData() {
+    // const expirationDate = new Date(
+    //   new Date().getTime() + +data.expiresIn * 1000
+    // );
+    // const user = new User(
+    //   data.email,
+    //   data.idToken,
+    //   data.localId,
+    //   expirationDate
+    // );
+    // console.log('User set on service', user);
 
+    //
+    //hardcode object pass due to some issues regarding data fetching that come from firebase on login api
+    const user = {
+      localId: 'pa3HGfMfloNvh6rl1lXhdpyeubA2',
+      email: 'test@test.com',
+      idToken:
+        'eyJhbGciOiJSUzI1NiIsImtpZCI6IjU0NWUyNDZjNTEwNmExMGQ2MzFiMTA0M2E3MWJiNTllNWJhMGM5NGQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vbmdyeC1lZmZlY3RzLWF1dGgiLCJhdWQiOiJuZ3J4LWVmZmVjdHMtYXV0aCIsImF1dGhfdGltZSI6MTY4NTY5MzA0MiwidXNlcl9pZCI6InBhM0hHZk1mbG9Odmg2cmwxbFhoZHB5ZXViQTIiLCJzdWIiOiJwYTNIR2ZNZmxvTnZoNnJsMWxYaGRweWV1YkEyIiwiaWF0IjoxNjg1NjkzMDQyLCJleHAiOjE2ODU2OTY2NDIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJ0ZXN0QHRlc3QuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.ekj6_RUWsWA3ghxODJ9x83y6oV2fRKRwiQyi6Fm81XtZ8197ko4_7usM3alp1s1KeGFYyqe7Fo7l2FRSPI3MsUMTH_STazQMKRIz3TQl4tU5-UfzL0IFqevX-j8PeUO1J6r2PCxmcSob_K7WPUZncnodPc2kD2BAfi83Pls0grAFYvjGsJcf24ZPU9tBT8MbV0OHPtMSUTPlM80w_05KrHsEXTGlpbh0Ixvtc9o6i2jRhmvE9spq6WwAsS2p0OP3JNS5uRD7dMb9frJ0xNxb5aTAnEoFlBqqwBdyhuFmxZxsA_8j58N-vhSiamaSFF_aorJem2oKXhIx3ZToRWb2sQ',
+      registered: true,
+      refreshToken:
+        'APZUo0QPl7P8xCLLVQ8elwxF43GzOWphOoe2-UNiMcRft-vIQwojMxGm2-pcRCj1HtMOe2QZbBKUH0FWzrI81CtFrRSOq-2KHuWrcmB2qw1aCvu4Rd2khE2S4X4npLM0aYRiQ7aDrWXCtCyECf8XMhkc1gZ3Tu4oN7eZLgMI8uaYESblDvg4MasyOoOBI4V8H_R9w4TvUxOZ5eFjL2-xTWiKl1YokXmvGA',
+      expiresIn: '3600',
+    };
+    return user;
+  }
   // register method
   register(email: string, password: string) {
     return this.fireauth.createUserWithEmailAndPassword(email, password);
