@@ -16,7 +16,7 @@ const _postReducer = createReducer(
     };
   }),
   on(updatePostAction, (state: any, action: any) => {
-    // remove all any later on ...
+    // remove all any type later on ...
     const updatedPost = state.posts.map((post: any) =>
       post.id == action.post.id ? action.post : post
     );

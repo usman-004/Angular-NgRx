@@ -10,11 +10,18 @@ import {
 } from './auth.action';
 import { from } from 'rxjs';
 import { User } from '../models/authUser.model';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.states';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 // import { AuthResponseData } from '../models/authResponseData.model';
 
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private authService: AuthService) {}
+  constructor(
+    private actions$: Actions,
+    private authService: AuthService,
+    private store: Store<AppState>
+  ) {}
 
   // login
   login$ = createEffect(() => {
@@ -26,7 +33,8 @@ export class AuthEffects {
         return this.authService
           .login(action.email, action.password)
           .then((data: any) => {
-            debugger;
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            // debugger;
             //remove any and solve it (pending)
             console.log('response data ...', data);
             const user = this.authService.formatUserData();

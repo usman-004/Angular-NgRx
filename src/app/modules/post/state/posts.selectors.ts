@@ -1,14 +1,13 @@
-import { AppState } from './../../../store/app.states';
-
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { environment } from '../../../../environments/environment';
+import { AppState } from 'src/app/store/app.states';
 
 const getInitialState = createFeatureSelector<AppState>(
   environment.POST_STATE_NAME
 );
 
 export const postsSelector = createSelector(getInitialState, (state) => {
-  return state.posts;
+  return state; //missing something there...
 });
 
 //get post by id

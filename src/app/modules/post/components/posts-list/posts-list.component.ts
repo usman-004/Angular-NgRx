@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.states';
+
 import { PostsModel } from '../../models/posts.model';
 import { Observable } from 'rxjs';
 import { postsSelector } from '../../state/posts.selectors';
 import { PostsState } from '../../state/posts.state';
 import { deletePostAction } from '../../state/post.actions';
+import { AppState } from 'src/app/store/app.states';
 
 @Component({
   selector: 'app-posts-list',

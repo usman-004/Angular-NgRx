@@ -4,9 +4,10 @@ import { PostsModel } from '../../models/posts.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/store/app.states';
+
 import { getPostById } from '../../state/posts.selectors';
 import { updatePostAction } from '../../state/post.actions';
+import { AppState } from 'src/app/store/app.states';
 
 @Component({
   selector: 'app-post-form',
