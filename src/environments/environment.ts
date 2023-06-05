@@ -8,19 +8,6 @@ export const environment = {
   COUNTER_STATE_NAME: 'counter',
   AUTH_STATE_NAME: 'auth',
 
-  // NestJs_apiUrl
-  // apiUrl: 'http://localhost:3000/auth/login',
-
-  //my_firebase_apiUrl for crud (posts)etc that are at realtime database
-  // apiUrl: 'https://ngrx-effects-auth-default-rtdb.firebaseio.com/users.json',
-
-  // firebase_url for signInWithPassword
-  // apiUrl:
-  //   'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAjs8cmpeYcLs83-J8qxwThpLrWtDtRfpg',
-
-  //my_firebase_key
-  // FIRBASE_API_KEY: 'AIzaSyAjs8cmpeYcLs83-J8qxwThpLrWtDtRfpg',
-
   //firebase_config
   firebaseConfig: {
     apiKey: 'AIzaSyAjs8cmpeYcLs83-J8qxwThpLrWtDtRfpg',

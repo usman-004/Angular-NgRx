@@ -7,7 +7,7 @@ const _sharedReducer = createReducer(
   initialSharedState,
   on(setLoadingSpinner, (state, action) => {
     return {
-      state,
+      ...state,
       showLoading: action.status,
     };
   })
