@@ -1,7 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import { initialState } from './posts.state';
 import { createPost, deletePostAction, updatePostAction } from './post.actions';
-import { state } from '@angular/animations';
 
 const _postReducer = createReducer(
   initialState,

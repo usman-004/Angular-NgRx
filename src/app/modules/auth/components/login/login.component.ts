@@ -23,9 +23,16 @@ export class LoginComponent implements OnInit {
     });
   }
   onLoginSubmit() {
+    if (this.loginForm.invalid) {
+      return 0;
+    }
     const email = this.loginForm.value.email;
     const password = this.loginForm.value.password;
     this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(loginStart({ email, password }));
+  }
+
+  get f() {
+    return this.loginForm.controls;
   }
 }
