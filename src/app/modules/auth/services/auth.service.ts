@@ -37,6 +37,18 @@ export class AuthService {
     console.log('User set on service', user);
     return user;
   }
+
+  //
+  getErrorMessage(message: string) {
+    switch (message) {
+      case 'EMAIL_NOT_FOUND':
+        return 'Email Not Found';
+      case 'INVALID_PASSWORD':
+        return 'Invalid Password';
+      default:
+        return 'Unknown error occurred. Please try again';
+    }
+  }
   // register method
   register(email: string, password: string) {}
 }

@@ -19,6 +19,7 @@ export class PostsListComponent implements OnInit {
 
   ngOnInit(): void {
     this.posts = this.store.select(postsSelector);
+    console.log(this.posts);
   }
 
   onRemovePost(id: string) {
