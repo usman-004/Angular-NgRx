@@ -4,6 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { registerStart } from '../../state/auth.action';
 import { AppState } from 'src/app/store/app.states';
+import { setLoadingSpinner } from 'src/app/store/shared/shared.action';
 
 @Component({
   selector: 'app-sign-up',
@@ -22,8 +23,12 @@ export class SignUpComponent implements OnInit {
     });
   }
   onSubmit() {
+    if (!this.registerForm.valid) {
+      return;
+    }
     const email = this.registerForm.value.email;
     const password = this.registerForm.value.password;
+    this.store.dispatch(setLoadingSpinner({ status: true }));
     this.store.dispatch(registerStart({ email, password }));
   }
 }

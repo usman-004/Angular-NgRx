@@ -5,6 +5,7 @@ import { environment } from 'src/environments/environment';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { AuthResponseData } from '../models/authResponseData.model';
 import { User } from '../models/authUser.model';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -45,10 +46,17 @@ export class AuthService {
         return 'Email Not Found';
       case 'INVALID_PASSWORD':
         return 'Invalid Password';
+      case 'EMAIL_EXISTS':
+        return 'Email already exists';
       default:
         return 'Unknown error occurred. Please try again';
     }
   }
   // register method
-  register(email: string, password: string) {}
+  register(email: string, password: string): Observable<AuthResponseData> {
+    return this.http.post<AuthResponseData>(
+      'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAjs8cmpeYcLs83-J8qxwThpLrWtDtRfpg',
+      { email, password, returnSecureToken: true }
+    );
+  }
 }

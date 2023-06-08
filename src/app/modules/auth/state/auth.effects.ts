@@ -2,7 +2,12 @@ import { catchError, exhaustMap, map, tap } from 'rxjs/operators';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from '@angular/core';
 import { AuthService } from '../services/auth.service';
-import { loginStart, loginSuccess } from './auth.action';
+import {
+  loginStart,
+  loginSuccess,
+  registerStart,
+  registerSuccess,
+} from './auth.action';
 import { Store } from '@ngrx/store';
 import { AppState } from 'src/app/store/app.states';
 import {
@@ -52,10 +57,49 @@ export class AuthEffects {
       return this.actions$.pipe(
         ofType(loginSuccess),
         tap((action) => {
+          this.store.dispatch(setErrorMessage({ message: '' }));
           this.router.navigate(['/']);
         })
       );
     },
     { dispatch: false }
   );
+
+  // after signup redirects
+  signUpRedirect$ = createEffect(
+    () => {
+      return this.actions$.pipe(
+        ofType(registerSuccess),
+        tap((action) => {
+          this.store.dispatch(setErrorMessage({ message: '' }));
+          this.router.navigate(['/auth/login']);
+        })
+      );
+    },
+    { dispatch: false }
+  );
+
+  //signup effects
+  signUp$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(registerStart),
+      exhaustMap((action) => {
+        return this.authService.register(action.email, action.password).pipe(
+          map((data) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const user = this.authService.formatUserData(data);
+            // this.authService.setUserInLocalStorage(user);
+            return registerSuccess({ user, redirect: true });
+          }),
+          catchError((errResp) => {
+            this.store.dispatch(setLoadingSpinner({ status: false }));
+            const errorMessage = this.authService.getErrorMessage(
+              errResp.error.error.message
+            );
+            return of(setErrorMessage({ message: errorMessage }));
+          })
+        );
+      })
+    );
+  });
 }
