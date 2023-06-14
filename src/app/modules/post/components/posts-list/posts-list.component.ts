@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 
-import { PostsModel } from '../../models/posts.model';
+import { PostModel } from '../../models/posts.model';
 import { Observable } from 'rxjs';
-import { postsSelector } from '../../state/posts.selectors';
+import { getPostsSelector } from '../../state/posts.selectors';
 import { PostsState } from '../../state/posts.state';
-import { deletePostAction } from '../../state/post.actions';
+import { deletePostAction, loadAllPosts } from '../../state/post.actions';
 import { AppState } from 'src/app/store/app.states';
 
 @Component({
@@ -14,15 +14,16 @@ import { AppState } from 'src/app/store/app.states';
   styleUrls: ['./posts-list.component.css'],
 })
 export class PostsListComponent implements OnInit {
-  posts!: Observable<any>; // dont use any here ,resolve later on
+  posts!: Observable<any>; //dont use any as a datatype
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
-    this.posts = this.store.select(postsSelector);
-    console.log(this.posts);
+    this.posts = this.store.select(getPostsSelector);
+    this.store.dispatch(loadAllPosts());
   }
 
-  onRemovePost(id: string) {
+  onRemovePost(id: any) {
+    //avoid any
     if (confirm('Are you sure you want to delete ?')) {
       // console.log('deleted');
       this.store.dispatch(deletePostAction({ id }));

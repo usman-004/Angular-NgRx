@@ -10,7 +10,9 @@ import { AddPostComponent } from './components/add-post/add-post.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PostFormComponent } from './components/post-form/post-form.component';
 import { environment } from 'src/environments/environment';
-
+import { HttpClientModule } from '@angular/common/http';
+import { EffectsModule } from '@ngrx/effects';
+import { PostsEffects } from './state/post.effects';
 @NgModule({
   declarations: [
     PostComponent,
@@ -22,7 +24,9 @@ import { environment } from 'src/environments/environment';
     CommonModule,
     PostRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
     StoreModule.forFeature(environment.POST_STATE_NAME, postReducer),
+    EffectsModule.forFeature([PostsEffects]),
   ],
 })
 export class PostModule {}

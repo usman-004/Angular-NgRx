@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostsModel } from '../../models/posts.model';
+import { PostModel } from '../../models/posts.model';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { Store } from '@ngrx/store';
@@ -15,7 +15,7 @@ import { AppState } from 'src/app/store/app.states';
   styleUrls: ['./post-form.component.css'],
 })
 export class PostFormComponent implements OnInit {
-  post!: PostsModel;
+  post!: PostModel;
   updateForm!: FormGroup;
   postSubscription!: Subscription;
   constructor(
@@ -53,7 +53,7 @@ export class PostFormComponent implements OnInit {
   onUpdatePost() {
     if (!this.updateForm.valid) return;
 
-    const post: PostsModel = {
+    const post: PostModel = {
       id: this.post.id,
       title: this.updateForm.value.title,
       description: this.updateForm.value.description,

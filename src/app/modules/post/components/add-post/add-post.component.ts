@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { PostsModel } from '../../models/posts.model';
+import { PostModel } from '../../models/posts.model';
 import { createPost } from '../../state/post.actions';
 import { Router } from '@angular/router';
 import { AppState } from 'src/app/store/app.states';
@@ -46,7 +46,7 @@ export class AddPostComponent implements OnInit {
     }
     // console.log(this.postForm.value);
 
-    const post: PostsModel = {
+    const post: PostModel = {
       title: this.postForm.value.title,
       description: this.postForm.value.description,
     };
