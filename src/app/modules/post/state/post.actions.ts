@@ -1,16 +1,22 @@
 import { createAction, props } from '@ngrx/store';
 import { PostModel } from '../models/posts.model';
 
-const addPost: string = '[Post page] add post';
+const ADD_POST: string = '[Post page] add post';
+const ADD_POST_SUCCESS: string = '[Post page] add post';
+
 const updatePost: string = '[Post Page] update Post';
 const deletePost: string = '[Post Page] delete post';
 
 const LOAD_POSTS: string = '[POST PAGE] load all posts...';
 const LOAD_POSTS_SUCCESS: string = '[POST PAGE] load posts successfully...';
 
-export const createPost = createAction(
-  addPost,
-  props<{ post: PostModel }>() // props<{ count: number }>() keep in mind
+export const addPost = createAction(
+  ADD_POST,
+  props<{ post: PostModel }>() // props<{ count: number }>() keep in mind this at the end ()
+);
+export const addPostSuccess = createAction(
+  ADD_POST_SUCCESS,
+  props<{ post: PostModel }>() // props<{ count: number }>() keep in mind this at the end ()
 );
 
 export const updatePostAction = createAction(

@@ -8,10 +8,6 @@ const getInitialState = createFeatureSelector<AppState>(
   environment.POST_STATE_NAME
 );
 
-export const craetePostSelector = createSelector(getInitialState, (state) => {
-  return state.posts;
-});
-
 export const getPostsSelector = createSelector(getInitialState, (state) => {
   return state.posts;
 });

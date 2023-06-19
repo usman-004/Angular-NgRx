@@ -1,8 +1,8 @@
+import { addPost } from './../../state/post.actions';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { PostModel } from '../../models/posts.model';
-import { createPost } from '../../state/post.actions';
 import { Router } from '@angular/router';
 import { AppState } from 'src/app/store/app.states';
 
@@ -51,9 +51,10 @@ export class AddPostComponent implements OnInit {
       description: this.postForm.value.description,
     };
 
-    this.store.dispatch(createPost({ post })); //1. don't miss curly braces! 2. Is there object inside object ?
+    this.store.dispatch(addPost({ post })); //1. don't miss curly braces! 2. Is there object inside object ?
 
     //list update
     this.router.navigate(['/posts']);
+    return;
   }
 }

@@ -32,4 +32,8 @@ export class PostService {
       })
     );
   }
+
+  addPost(post: PostModel): Observable<{ id: string }> {
+    return this.http.post<{ id: string }>(this.baseUrl, post);
+  }
 }
